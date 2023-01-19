@@ -36,9 +36,9 @@ export const getNotes = (userData) => async (dispatch) => {
 }
 
 
-export const getNotesByTitle = (searchQuery) => async (dispatch) => {
+export const getNotesByTitle = (userId, searchQuery) => async (dispatch) => {
      try {
-        let { data } = await api.fetchNotesByTitle(searchQuery)
+        let { data } = await api.fetchNotesByTitle(userId, searchQuery)
         dispatch({type: SEARCH_NOTES, data})
     } catch (error) {
         console.log(error)

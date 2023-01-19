@@ -2,7 +2,6 @@
 const note_model = require('../models/notes_model.js')
 
 const getNotes = async (req, res) => {
-    console.log('Unk')
     try {
         const notes = await note_model.find({user_id: req.params.id})
         res.status(200).json(notes)
@@ -14,10 +13,10 @@ const getNotes = async (req, res) => {
 }
 
 const getNotesByTitle = async (req, res) => {
-    const {searchQuery} = req.query
+    const {userId, searchQuery} = req.query
     try {
         const title = new RegExp(searchQuery, 'i');
-        const notes = await note_model.find({title});
+        const notes = await note_model.find({title: title, user_id: userId});
         res.status(200).json(notes)
     } catch(error) {
         console.log(error)

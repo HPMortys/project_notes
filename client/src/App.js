@@ -39,7 +39,7 @@ function App() {
 
     const searchNotes = (search) => {
         if(search.trim()) {
-            dispatch(getNotesByTitle({search})).then(_ => updateNotes())
+            dispatch(getNotesByTitle(user.result._id, search)).then(_ => updateNotes())
         } 
         else {
             dispatch(getNotes(user.result._id))
