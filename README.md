@@ -1,4 +1,4 @@
-# project_notes
+# SimpleNotes
  
 <p>
   <img src="auth.jpg">
