@@ -1,6 +1,6 @@
 # SimpleNotes
  
 <p>
-  <img src="auth.jpg">
-  <img src="view.jpg">
+  <img src="auth1.jpg">
+  <img src="view1.jpg">
 </p>
