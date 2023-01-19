@@ -2,6 +2,7 @@
 const note_model = require('../models/notes_model.js')
 
 const getNotes = async (req, res) => {
+    console.log('Unk')
     try {
         const notes = await note_model.find({user_id: req.params.id})
         res.status(200).json(notes)
@@ -10,6 +11,18 @@ const getNotes = async (req, res) => {
         res.status(500).json({message: 'Unknown error'})
     }
 
+}
+
+const getNotesByTitle = async (req, res) => {
+    const {searchQuery} = req.query
+    try {
+        const title = new RegExp(searchQuery, 'i');
+        const notes = await note_model.find({title});
+        res.status(200).json(notes)
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({message: 'Unknown error'})
+    }
 }
 
 const createNote = async (req, res) => {
@@ -49,5 +62,6 @@ module.exports = {
     getNotes,
     createNote,
     updateNote,
-    deleteNote
+    deleteNote,
+    getNotesByTitle
 }

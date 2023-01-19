@@ -1,11 +1,9 @@
 import React, {useRef, useState} from 'react'
 import '../App.css'
-import {v4 as uuid} from 'uuid'
 
-import {EditorState, convertToRaw, convertFromRaw} from 'draft-js'
+import {EditorState} from 'draft-js'
 import {Editor} from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import draftToHtml from 'draftjs-to-html'
 
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
@@ -15,8 +13,6 @@ import SaveIcon from "@material-ui/icons/Save"
 import TitleIcon from '@material-ui/icons/Title'
 import DeleteIcon from "@material-ui/icons/Delete"
 
-import {Cards} from "./Cards"
-import {createNote} from "../actions/actions";
 
 export function NoteEditor({onSave, onCancel, note}) {
 
@@ -105,18 +101,6 @@ export function NoteEditor({onSave, onCancel, note}) {
                     </Button>
                 </ButtonGroup>
             </div>
-
-            {/* Cards */}
-            {/*<Cards*/}
-            {/*    details={[*/}
-            {/*        { text: createMarkup(cardRef.current), title: titleState, color: "#FEC006", category: "Personal"},*/}
-            {/*        { text: createMarkup(cardRef.current), title: titleState, color: "#2196F3", category: "Sport"},*/}
-            {/*        { text: createMarkup(cardRef.current), title: titleState, color: "#FE5621", category: "Hobby"},*/}
-            {/*        { text: createMarkup(cardRef.current), title: titleState, color: "#673AB7", category: "Work"},*/}
-            {/*        { text: createMarkup(cardRef.current), title: titleState, color: "#2196F3", category: "Goal"},*/}
-            {/*        { text: createMarkup(cardRef.current), title: titleState, color: "#FEC006", category: "ToDO"},*/}
-            {/*    ]} />*/}
-
         </div>
     )
 

@@ -8,7 +8,7 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import FormContainer from './containers/index_form'
 import {NoteEditor} from "./components/NoteEditor"
 import {NotesViewer} from "./components/NotesViewer"
-import { createNote, getNotes, deleteNote, updateNote } from "./actions/actions"
+import {getNotesByTitle, createNote, getNotes, deleteNote, updateNote } from "./actions/actions"
 import {EditorState, convertFromRaw} from "draft-js"
 import { useDispatch } from "react-redux"
 
@@ -24,8 +24,8 @@ function App() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const [isEditing, setIsEditing] = useState(false)
     const [notes, setNotes] = useState([])
-    const dispatch = useDispatch()
     const [editorState, setEditorState] = useState({text: null, title: null, id: null})
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (user !== null) 
@@ -36,6 +36,16 @@ function App() {
         }, [])
 
     const updateNotes = () => setNotes(deserialize(JSON.parse(localStorage.getItem('notes'))))
+
+    const searchNotes = (search) => {
+        if(search.trim()) {
+            dispatch(getNotesByTitle({search})).then(_ => updateNotes())
+        } 
+        else {
+            dispatch(getNotes(user.result._id))
+                .then(_ => updateNotes())
+        }
+    }
 
     const onSave = (data, id=null) => {
         id === null
@@ -86,6 +96,7 @@ function App() {
                                     onAdd={onAdd}
                                     onRemove={onRemove}
                                     onEdit={onEdit}
+                                    searchNotes={searchNotes}
                                     notes={notes}
                                 />
                             }

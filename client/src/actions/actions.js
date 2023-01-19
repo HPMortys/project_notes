@@ -1,6 +1,6 @@
-import {ADD_NOTE, AUTH, DELETE_NOTE, GET_NOTES, UPDATE_NOTE} from "../constants/actionTypes";
+import {ADD_NOTE, AUTH, DELETE_NOTE, GET_NOTES, SEARCH_NOTES, UPDATE_NOTE} from "../constants/actionTypes";
 import * as api from '../api/api_index.js';
-import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
+import {convertToRaw} from "draft-js";
 
 
 export const signin = (formData, history) => async (dispatch) => {
@@ -15,7 +15,6 @@ export const signin = (formData, history) => async (dispatch) => {
 }
 
 
-
 export const signup = (formData, history) => async (dispatch) => {
     try {
         const { data } = await api.signUp(formData)
@@ -27,12 +26,20 @@ export const signup = (formData, history) => async (dispatch) => {
     }
 }
 
-
-
 export const getNotes = (userData) => async (dispatch) => {
     try {
         let { data } = await api.fetchPosts(userData)
         dispatch({type: GET_NOTES, data})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getNotesByTitle = (searchQuery) => async (dispatch) => {
+     try {
+        let { data } = await api.fetchNotesByTitle(searchQuery)
+        dispatch({type: SEARCH_NOTES, data})
     } catch (error) {
         console.log(error)
     }
@@ -52,6 +59,7 @@ export const createNote = (formData) => async (dispatch) => {
         console.log(error)
     }
 }
+
 
 export const updateNote = (formData) => async (dispatch) => {
     try {

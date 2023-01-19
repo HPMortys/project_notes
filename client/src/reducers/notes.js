@@ -1,5 +1,4 @@
-import {GET_NOTES, ADD_NOTE, DELETE_NOTE, UPDATE_NOTE} from '../constants/actionTypes'
-import {convertFromRaw, convertToRaw, EditorState} from "draft-js"
+import {GET_NOTES, ADD_NOTE, DELETE_NOTE, UPDATE_NOTE, SEARCH_NOTES} from '../constants/actionTypes'
 
 
 const notesReducer = (state = { authData: null } , action) => {
@@ -14,6 +13,9 @@ const notesReducer = (state = { authData: null } , action) => {
             localStorage.setItem('notes', JSON.stringify(action?.data))
             return { ...state, authData: null}
         case UPDATE_NOTE:
+            localStorage.setItem('notes', JSON.stringify(action?.data))
+            return { ...state, authData: null}
+        case SEARCH_NOTES:
             localStorage.setItem('notes', JSON.stringify(action?.data))
             return { ...state, authData: null}
         default:

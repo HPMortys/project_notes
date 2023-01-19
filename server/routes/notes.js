@@ -2,12 +2,14 @@ const express = require('express')
 
 
 
-const { getNotes, createNote, updateNote, deleteNote} = require('../controllers/notes')
+const { getNotesByTitle, getNotes, createNote, updateNote, deleteNote} = require('../controllers/notes')
 
 
 const router = express.Router()
 
 router.get('/posts/:id', getNotes)
+router.get('/search', getNotesByTitle)
+
 router.post('/posts', createNote)
 
 router.patch('/posts', updateNote)
