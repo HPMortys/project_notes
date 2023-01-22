@@ -7,5 +7,5 @@
   <br/>
   <img src="verification_email.jpg">
   <br/>
-  <img src="verification_view.jpg">
+  <img src="verification_view.png">
 </p>
