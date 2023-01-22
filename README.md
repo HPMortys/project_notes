@@ -1,9 +1,9 @@
 # SimpleNotes
  
 <p>
-  <img src="view.jpg">
+  <img src="view1.jpg">
   <br/>
-  <img src="auth.jpg">
+  <img src="auth1.jpg">
   <br/>
   <img src="verification_email.jpg">
   <br/>
