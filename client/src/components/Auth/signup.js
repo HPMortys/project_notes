@@ -5,7 +5,7 @@ import {Grid, Paper, Avatar, Button, Typography} from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { useDispatch } from "react-redux";
 import { signup } from '../../actions/actions'
-import { GoogleLogin } from 'react-google-login'
+// import { GoogleLogin } from 'react-google-login'
 
 const initialState = { username: '', email: '', password: '' }
 
@@ -27,7 +27,7 @@ const SignUp = () => {
           err_temp.username = formData.username?.length<20 ? "": "Username should not exceed 20 Characters";
           err_temp.email = !/^[A-Z0-9._%+-]+\.[A-Z]{2-4}$/i.test(formData.email?.length) ? "": "Email is not valid";
           setErrors({ ...err_temp})
-          return Object.values(err_temp).every(x => x == "")
+          return Object.values(err_temp).every(x => x === "")
         }
 
         const handleShowPassword = () =>  setShowPassword((prevShowPasswprd) => !prevShowPasswprd)

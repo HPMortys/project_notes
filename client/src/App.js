@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import FormContainer from './containers/index_form'
 import {NoteEditor} from "./components/NoteEditor"
 import {NotesViewer} from "./components/NotesViewer"
+import Verification from "./components/Verification/verification"
 import {getNotesByTitle, createNote, getNotes, deleteNote, updateNote } from "./actions/actions"
 import {EditorState, convertFromRaw} from "draft-js"
 import { useDispatch } from "react-redux"
@@ -103,6 +104,7 @@ function App() {
                         </Route>
                         {/* Sign In Sign Up */}
                         <Route path="/auth" exact component={FormContainer}/>
+                        <Route path="/verification" exact component={Verification} /> 
                     </Switch>
 
                     {/* Footer Part */}

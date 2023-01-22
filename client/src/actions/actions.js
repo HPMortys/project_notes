@@ -17,9 +17,8 @@ export const signin = (formData, history) => async (dispatch) => {
 
 export const signup = (formData, history) => async (dispatch) => {
     try {
-        const { data } = await api.signUp(formData)
-        dispatch({type: AUTH, data})
-        history.push('/')
+        await api.signUp(formData)
+        history.push('/verification')
     } catch (error) {
         console.log(error)
         alert(error.response.data.message)
