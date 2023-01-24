@@ -12,6 +12,8 @@ import Button from "@material-ui/core/Button"
 import SaveIcon from "@material-ui/icons/Save"
 import TitleIcon from '@material-ui/icons/Title'
 import DeleteIcon from "@material-ui/icons/Delete"
+import { TagFaces } from '@material-ui/icons'
+import ChipInput from 'material-ui-chip-input';
 
 
 export function NoteEditor({onSave, onCancel, note}) {
@@ -24,9 +26,19 @@ export function NoteEditor({onSave, onCancel, note}) {
     const cardRef = useRef(null)
 
     const [titleState, setTitleState] = useState(note ? note.title : '')
+    const[tagsState, setTagsState] = useState(note ? note.tags : [])
 
     const onTitleStateChange = e => {
         setTitleState(e.target.value)
+    }
+
+
+    const onAddTag = (tag) => {
+        setTagsState([...tagsState, tag])   
+    }
+
+    const onDeleteTag = (tag_d) => {
+        setTagsState([tagsState.filter((tag) => tag !== tag_d)])
     }
 
     const onEditorStateChange = editorState => {
@@ -37,6 +49,7 @@ export function NoteEditor({onSave, onCancel, note}) {
     const onSaveBtn = () => {
         onSave({
             title: titleState,
+            tags: tagsState,
             text: editorState
         }, note ? note.id : null)
     }
@@ -61,6 +74,29 @@ export function NoteEditor({onSave, onCancel, note}) {
                             value={titleState}
                             onChange={onTitleStateChange}
                             label="Title"
+                        />
+                    </Grid>
+                </Grid>
+            </div>
+
+            <div className='title'>
+                <Grid
+                    container
+                    spacing={1}
+                    alignItems="flex-end"
+                    justify="center"
+                    alignContent='center'
+                >
+                    <Grid item>
+                        <TagFaces style={{color: '#282c34'}}/>
+                    </Grid>
+                    <Grid item>
+                        <ChipInput
+                            onAdd={(tag) => onAddTag(tag)}
+                            onDelete={(tag) => onDeleteTag(tag)}
+                            value={tagsState}
+                            // onChange={onTagsStateChange}
+                            label="Tags"
                         />
                     </Grid>
                 </Grid>

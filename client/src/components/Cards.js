@@ -8,6 +8,7 @@ import Fab from '@material-ui/core/Fab'
 
 import {convertToRaw} from 'draft-js'
 import draftToHtml from "draftjs-to-html";
+import { CardContent, Typography } from '@material-ui/core'
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +28,7 @@ function choose(choices) {
 function Card({onRemove, onEdit, data, id}) {
 
     const classes = useStyles()
-    const {title, text} = data
+    const {title, tags, text} = data
     const category = 'topic'
     const color = choose(["#FEC006", "#2196F3", "#FE5621", "#673AB7"])
 
@@ -61,8 +62,10 @@ function Card({onRemove, onEdit, data, id}) {
                 </Fab>
             </div>
 
+            <Typography variant="body2" color='textSecondary'> {tags.map((tag) => ` #${tag}`)} </Typography>
             <h2 className="article__title">{title}</h2>
-            <div className="article__text">{text}</div>
+            <Typography component="p" className="article__text">{text}</Typography>
+            
         </article>
     )
 }

@@ -9,7 +9,7 @@ import FormContainer from './containers/index_form'
 import {NoteEditor} from "./components/NoteEditor"
 import {NotesViewer} from "./components/NotesViewer"
 import Verification from "./components/Verification/verification"
-import {getNotesByTitle, createNote, getNotes, deleteNote, updateNote } from "./actions/actions"
+import {getNotesSearch, createNote, getNotes, deleteNote, updateNote } from "./actions/actions"
 import {EditorState, convertFromRaw} from "draft-js"
 import { useDispatch } from "react-redux"
 
@@ -38,9 +38,9 @@ function App() {
 
     const updateNotes = () => setNotes(deserialize(JSON.parse(localStorage.getItem('notes'))))
 
-    const searchNotes = (search) => {
-        if(search.trim()) {
-            dispatch(getNotesByTitle(user.result._id, search)).then(_ => updateNotes())
+    const searchNotes = (search, tags) => {
+        if(search.trim() || tags) {
+            dispatch(getNotesSearch(user.result._id, search, tags)).then(_ => updateNotes())
         } 
         else {
             dispatch(getNotes(user.result._id))

@@ -35,9 +35,9 @@ export const getNotes = (userData) => async (dispatch) => {
 }
 
 
-export const getNotesByTitle = (userId, searchQuery) => async (dispatch) => {
+export const getNotesSearch = (userId, searchQuery, tags) => async (dispatch) => {
      try {
-        let { data } = await api.fetchNotesByTitle(userId, searchQuery)
+        let { data } = await api.fetchNotesSearch(userId, searchQuery, tags)
         dispatch({type: SEARCH_NOTES, data})
     } catch (error) {
         console.log(error)
@@ -48,6 +48,7 @@ export const getNotesByTitle = (userId, searchQuery) => async (dispatch) => {
 export const createNote = (formData) => async (dispatch) => {
     try {
         console.log('createNote', formData.id, formData.user_id)
+        console.log(formData)
         const res = await api.createPost({
             ...formData,
             text: JSON.stringify(convertToRaw(formData.text.getCurrentContent()))
