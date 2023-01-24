@@ -1,7 +1,7 @@
 # SimpleNotes
  
 <p>
-  <img src="view4.png">
+  <img src="view5.png">
   <br/>
   <img src="auth1.png">
   <br/>
