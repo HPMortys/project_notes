@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const postSheme = mongoose.Schema({
     title: { type: String},
+    tags: {type: [String]},
     text: { type: String},
     id: {type: String},
     user_id: {type: String}

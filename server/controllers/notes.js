@@ -12,11 +12,12 @@ const getNotes = async (req, res) => {
 
 }
 
-const getNotesByTitle = async (req, res) => {
-    const {userId, searchQuery} = req.query
+const getNotesSearch = async (req, res) => {
+    const {userId, searchQuery, tags} = req.query
     try {
         const title = new RegExp(searchQuery, 'i');
-        const notes = await note_model.find({title: title, user_id: userId});
+        const notes = await note_model.find(
+            { $or: [ {title: title }, { tags: { $in: tags.split(',') } } ], user_id: userId});
         res.status(200).json(notes)
     } catch(error) {
         console.log(error)
@@ -62,5 +63,5 @@ module.exports = {
     createNote,
     updateNote,
     deleteNote,
-    getNotesByTitle
+    getNotesSearch
 }
