@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Button, Typography, Paper, Grid, TextField} from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
+import Search from "@material-ui/icons/Search"
 
 import {Cards} from "./Cards"
 import ChipInput from 'material-ui-chip-input';
@@ -35,26 +36,25 @@ export function NotesViewer({notes, onRemove, onEdit, onAdd, searchNotes}) {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={2} style={textStyle}>
-                <Button 
-                    variant="contained" 
-                    color='secondary'     
-                    startIcon={<AddIcon/>}
-                    onClick={onAdd}
-                    fullWidth
-                >
-                    Add
-                </Button>
+            <Grid item xs={2}>
 
-                <div>
+                <div style={textStyle}>
+                    <Button 
+                        variant="contained" 
+                        color='secondary'     
+                        startIcon={<AddIcon/>}
+                        onClick={onAdd}
+                        fullWidth
+                    >
+                        Add
+                    </Button>
                     <TextField 
-                        name="search"
-                        label='Title'
-                        fullWidth 
-                        value={search}
-                        onChange={(e) => {setSearch(e.target.value)}}
-                    />
-
+                            name="search"
+                            label='Title'
+                            fullWidth 
+                            value={search}
+                            onChange={(e) => {setSearch(e.target.value)}}
+                        />
                     <ChipInput 
                         value={tags}
                         onAdd={(chip) => handleAddChip(chip)}
@@ -66,6 +66,7 @@ export function NotesViewer({notes, onRemove, onEdit, onAdd, searchNotes}) {
                         onClick={() => searchNotes(search, tags)} 
                         color="primary"
                         variant="contained" 
+                        startIcon={<Search/>}
                         fullWidth 
                         > 
                         Search 
