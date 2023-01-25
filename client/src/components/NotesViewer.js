@@ -11,7 +11,7 @@ import ChipInput from 'material-ui-chip-input';
 export function NotesViewer({notes, onRemove, onEdit, onAdd, searchNotes}) {
     
     const user = JSON.parse(localStorage.getItem('profile'));
-    const [search, setSearch] = useState([]);
+    const [search, setSearch] = useState('');
     const [tags, setTags] = useState([])
 
     const handleAddChip = (tag) => setTags([...tags, tag]);
